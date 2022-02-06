@@ -16,15 +16,30 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import com.squareup.okhttp.*;
 
-public class BaseDeDatos {
+public class BaseDeDatos implements BaseDeDatosUsuario {
 
 
-    public MongoDatabase conexion() {
-        MongoClient client = MongoClients.create("mongodb+srv://testUser:12345@doctorstrange.wc8mn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-        MongoDatabase db = client.getDatabase("DoctorStrange");
-        //MongoCollection col = db.getCollection("Usuario");
+    public MongoDatabase conexion(){
+        MongoClient client = MongoClients.create(DB_MONGO_DBURI);
+        MongoDatabase db = client.getDatabase(DB_NAME);
         return db;
+    }
 
+    public boolean comprobarUsuario(String usuario,String password) {
+        MongoDatabase db = conexion();
+        FindIterable<Document> findDocument = db.getCollection(DB_COL_USER).find();
+
+        for (Document item : findDocument) {
+            if (item.getString(DB_ATRIB_USERNAME).equals(usuario) && item.getString(DB_ATRIB_PASS).equals(password)) {
+                System.out.println("Login correcto. Bienvenido: " + item.getString("Usuario"));
+                return true;
+            } else {
+                System.out.println("Login incorrecto.");
+
+            }
+
+        }
+        return false;
     }
 
 
