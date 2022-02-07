@@ -22,6 +22,7 @@ public class Jugar extends Application implements Initializable {
         BaseDeDatos baseDeDatos = new BaseDeDatos();
         baseDeDatos.conexion();
         baseDeDatos.cargarPartida();
+        baseDeDatos.cerrarConexion();
     }
 
 
@@ -34,4 +35,6 @@ public class Jugar extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+
 }

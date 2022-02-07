@@ -20,13 +20,25 @@ import com.squareup.okhttp.*;
 public class BaseDeDatos implements BaseDeDatosUsuario {
 
 
-    public MongoDatabase conexion(){
+    public MongoDatabase conexion() {
         MongoClient client = MongoClients.create(DB_MONGO_DBURI);
         MongoDatabase db = client.getDatabase(DB_NAME);
         return db;
     }
 
-    public boolean comprobarUsuario(String usuario,String password) {
+    public void cerrarConexion() {
+        try {
+            MongoClient client = MongoClients.create(DB_MONGO_DBURI);
+            MongoDatabase db = client.getDatabase(DB_NAME);
+            client.close();
+            System.out.println("Se ha cerrado la conexión con la base de datos");
+        } catch (MongoException e) {
+            e.printStackTrace();
+            System.out.println("Error al cerrar la conexión con la base de datos");
+        }
+    }
+
+    public boolean comprobarUsuario(String usuario, String password) {
         MongoDatabase db = conexion();
         FindIterable<Document> findDocument = db.getCollection(DB_COL_USER).find();
 
@@ -43,8 +55,22 @@ public class BaseDeDatos implements BaseDeDatosUsuario {
         return false;
     }
 
+    public Jugador cargarJugador() {
+        MongoDatabase db = conexion();
+        FindIterable<Document> findDocument = db.getCollection(DB_COL_USER).find();
+        String user = null;
+        int coins = 0;
+        for (Document item : findDocument) {
+            user = item.getString(DB_ATRIB_USERNAME);
+            coins = item.getInteger(DB_ATRIB_MONEDAS);
 
-    public boolean registrarUser(Jugador jugador){
+        }
+        Jugador jugador = new Jugador(coins, user);
+        return jugador;
+    }
+
+
+    public boolean registrarUser(Jugador jugador) {
 
 
         return true;
@@ -69,9 +95,9 @@ public class BaseDeDatos implements BaseDeDatosUsuario {
     }
 
     public void cargarPartida() {
-       MongoDatabase db = conexion();
-       FindIterable<Document> iterable = db.getCollection("Usuario").find();
-        for (Document item:iterable) {
+        MongoDatabase db = conexion();
+        FindIterable<Document> iterable = db.getCollection("Usuario").find();
+        for (Document item : iterable) {
             System.out.println(item);
         }
     }
@@ -88,5 +114,6 @@ public class BaseDeDatos implements BaseDeDatosUsuario {
         return resultDocument.first().toJson();
 
     }
+
 
 }

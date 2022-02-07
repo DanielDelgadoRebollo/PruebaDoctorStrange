@@ -5,13 +5,22 @@ import java.util.Date;
 public class Jugador {
 
     int id = 0;
+    int monedas = 0;
     String user, password, name, email;
     Date fechaAlta;
     boolean estado;
 
+    public Jugador() {
+    }
 
-    public Jugador(String user, String password, String name, String email, Date fechaAlta, boolean estado) {
+    public Jugador(int monedas, String user) {
+        this.monedas = monedas;
+        this.user = user;
+    }
+
+    public Jugador(int monedas, String user, String password, String name, String email, Date fechaAlta, boolean estado) {
         this.id = this.id++;
+        this.monedas = monedas;
         this.user = user;
         this.password = password;
         this.name = name;

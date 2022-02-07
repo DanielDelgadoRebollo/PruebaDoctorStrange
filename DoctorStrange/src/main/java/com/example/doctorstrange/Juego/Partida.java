@@ -1,6 +1,8 @@
 package com.example.doctorstrange.Juego;
 
 import com.example.doctorstrange.BBDD.BaseDeDatos;
+import com.mongodb.client.FindIterable;
+import org.bson.Document;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -11,6 +13,7 @@ public class Partida {
         int opcionUsuario = 0;
         Scanner teclado = new Scanner(System.in);
         BaseDeDatos baseDeDatos = new BaseDeDatos();
+        baseDeDatos.conexion();
             try {
                 do {
                     System.out.println("1.- Jugar Partida");
@@ -28,7 +31,8 @@ public class Partida {
                             password = teclado.next();
                             baseDeDatos.conexion();
                             if (baseDeDatos.comprobarUsuario(user, password)) {
-
+                                Jugador jugador = baseDeDatos.cargarJugador();
+                                System.out.println(jugador.user + "\n" + jugador.monedas);
                             } else {
                                 System.out.println("Los datos introducidos son incorrectos, vuelve a intentarlo");
                             }
@@ -44,7 +48,7 @@ public class Partida {
                 System.out.println("Debe ingresar obligatoriamente un número entre 1 y 3.");
             }
 
-
+            baseDeDatos.cerrarConexion();
     }
     //TODO
     /*Cada jugador posee un número de monedas que va ganando a lo largo del juego y que
