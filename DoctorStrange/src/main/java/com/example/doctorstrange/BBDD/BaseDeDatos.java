@@ -1,5 +1,6 @@
 package com.example.doctorstrange.BBDD;
 
+import com.example.doctorstrange.Juego.Jugador;
 import com.mongodb.Block;
 import com.mongodb.ConnectionString;
 import com.mongodb.client.FindIterable;
@@ -42,6 +43,12 @@ public class BaseDeDatos implements BaseDeDatosUsuario {
         return false;
     }
 
+
+    public boolean registrarUser(Jugador jugador){
+
+
+        return true;
+    }
 
     public void guardarPartida() {
         conexion();
