@@ -2,23 +2,47 @@ package com.example.doctorstrange.Juego;
 
 import com.example.doctorstrange.BBDD.BaseDeDatos;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Partida {
     public static void main(String[] args) {
-        BaseDeDatos baseDeDatos = new BaseDeDatos();
-        System.out.println("Bienvenidos a doctor Strange");
-        System.out.println("Identifiquese");
-        String user,password;
+        String user, password;
+        int opcionUsuario = 0;
         Scanner teclado = new Scanner(System.in);
-        System.out.println("Introduzca Usuario");
-        user = teclado.next();
-        System.out.println("Introduzca password");
-        password = teclado.next();
-        baseDeDatos.conexion();
-        if (baseDeDatos.comprobarUsuario(user,password)){
+        BaseDeDatos baseDeDatos = new BaseDeDatos();
+            try {
+                do {
+                    System.out.println("1.- Jugar Partida");
+                    System.out.println("2.- Cargar Partida");
+                    System.out.println("3.- Salir");
+                opcionUsuario = teclado.nextInt();
+                if (opcionUsuario == 1 || opcionUsuario == 2 || opcionUsuario == 3) {
+                    switch (opcionUsuario) {
+                        case 1:
+                            System.out.println("Bienvenidos a doctor Strange");
+                            System.out.println("Identifiquese");
+                            System.out.println("Introduzca Usuario");
+                            user = teclado.next();
+                            System.out.println("Introduzca password");
+                            password = teclado.next();
+                            baseDeDatos.conexion();
+                            if (baseDeDatos.comprobarUsuario(user, password)) {
 
-        }
+                            } else {
+                                System.out.println("Los datos introducidos son incorrectos, vuelve a intentarlo");
+                            }
+                            break;
+                        case 2:
+                            break;
+                    }
+                } else {
+                    System.out.println("Numero mal introducido");
+                }
+                }while(opcionUsuario != 3);
+            } catch (InputMismatchException ex) {
+                System.out.println("Debe ingresar obligatoriamente un número entre 1 y 3.");
+            }
 
 
     }
