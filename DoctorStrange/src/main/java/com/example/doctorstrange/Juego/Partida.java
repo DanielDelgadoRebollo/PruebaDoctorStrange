@@ -9,17 +9,18 @@ public class Partida {
         BaseDeDatos baseDeDatos = new BaseDeDatos();
         System.out.println("Bienvenidos a doctor Strange");
         System.out.println("Identifiquese");
-        String user,password;
+        String user, password;
         Scanner teclado = new Scanner(System.in);
         System.out.println("Introduzca Usuario");
         user = teclado.next();
         System.out.println("Introduzca password");
         password = teclado.next();
         baseDeDatos.conexion();
-        if (baseDeDatos.comprobarUsuario(user,password)){
+        if (baseDeDatos.comprobarUsuario(user, password)) {
 
+        } else {
+            System.out.println("Los datos introducidos son incorrectos, vuelve a intentarlo");
         }
-
     }
     //TODO
     /*Cada jugador posee un número de monedas que va ganando a lo largo del juego y que
