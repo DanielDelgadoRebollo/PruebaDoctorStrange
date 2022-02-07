@@ -14,11 +14,11 @@ public class Partida {
         Scanner teclado = new Scanner(System.in);
         BaseDeDatos baseDeDatos = new BaseDeDatos();
         baseDeDatos.conexion();
-            try {
-                do {
-                    System.out.println("1.- Jugar Partida");
-                    System.out.println("2.- Cargar Partida");
-                    System.out.println("3.- Salir");
+        try {
+            do {
+                System.out.println("1.- Jugar Partida");
+                System.out.println("2.- Cargar Partida");
+                System.out.println("3.- Salir");
                 opcionUsuario = teclado.nextInt();
                 if (opcionUsuario == 1 || opcionUsuario == 2 || opcionUsuario == 3) {
                     switch (opcionUsuario) {
@@ -32,7 +32,28 @@ public class Partida {
                             baseDeDatos.conexion();
                             if (baseDeDatos.comprobarUsuario(user, password)) {
                                 Jugador jugador = baseDeDatos.cargarJugador();
-                                System.out.println(jugador.user + "\n" + jugador.monedas);
+                                System.out.println(jugador.user + ", tienes:" + "\n" + jugador.monedas + " monedas");
+                                int opciones = 0;
+                                System.out.println("Bienvenido " + jugador.user + "," + " elige una opción:\n" +
+                                        "1- Iniciar partida\n" +
+                                        "2- Cargar partida\n" +
+                                        "3- Reglas del juego\n" +
+                                        "4- Ranking\n" +
+                                        "5- Salir");
+                                opciones = teclado.nextInt();
+                                switch (opciones) {
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        break;
+                                    case 4:
+                                        break;
+                                    case 5:
+                                        System.out.println("Hasta pronto " + jugador.user );
+                                        break;
+                                } while (opciones != 5 );
                             } else {
                                 System.out.println("Los datos introducidos son incorrectos, vuelve a intentarlo");
                             }
@@ -43,12 +64,12 @@ public class Partida {
                 } else {
                     System.out.println("Numero mal introducido");
                 }
-                }while(opcionUsuario != 3);
-            } catch (InputMismatchException ex) {
-                System.out.println("Debe ingresar obligatoriamente un número entre 1 y 3.");
-            }
+            } while (opcionUsuario != 3);
+        } catch (InputMismatchException ex) {
+            System.out.println("Debe ingresar obligatoriamente un número entre 1 y 3.");
+        }
 
-            baseDeDatos.cerrarConexion();
+        baseDeDatos.cerrarConexion();
     }
     //TODO
     /*Cada jugador posee un número de monedas que va ganando a lo largo del juego y que
