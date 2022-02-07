@@ -7,7 +7,7 @@ public interface BaseDeDatosUsuario {
     String DB_ATRIB_USERNAME = "Usuario";
     String DB_ATRIB_PASS = "Contrasena";
     String DB_ATRIB_NAME = "Nombre";
-    String DB_ATRIB_APELLUDOS = "Apellidos";
+    String DB_ATRIB_APELLIDOS = "Apellidos";
     String DB_ATRIB_LOCALIZACION = "Localizacion";
     String DB_ATRIB_EDAD = "Edad";
     String DB_ATRIB_EMAIL = "Email";
