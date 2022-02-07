@@ -1,2 +1,0 @@
-# PruebaDoctorStrange
-Prueba doctorStrange 

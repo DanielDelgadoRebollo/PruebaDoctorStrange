@@ -16,4 +16,6 @@ public interface BaseDeDatosUsuario {
     String DB_ATRIB_TARJETA_BANCARIA = "TarjetaBancaria";
     String DB_ATRIB_TRABAJO = "Trabajo";
     String DB_ATRIB_NACIONALIDAD = "Nacionalidad";
+
+
 }

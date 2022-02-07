@@ -7,55 +7,20 @@ import java.util.Scanner;
 public class Partida {
     public static void main(String[] args) {
         BaseDeDatos baseDeDatos = new BaseDeDatos();
-        Scanner teclado = new Scanner(System.in);
-        int num = teclado.nextInt();
-        String user,password,nombre,apellidos,localizacion,edad,email,fechaAlta,sexo,tarjetaBancaria,trabajo,nacionalidad;
         System.out.println("Bienvenidos a doctor Strange");
-        do {
-            System.out.println("Opcion 1 para identificarte");
-            System.out.println("Opcion 2 para registrarte");
-            System.out.println("Opcion 3 para salir");
-            switch (num){
-                case 1:
-                    System.out.println("Identifiquese");
-                    System.out.println("Introduzca Usuario");
-                    user = teclado.next();
-                    System.out.println("Introduzca password");
-                    password = teclado.next();
-                    baseDeDatos.conexion();
-                    if (baseDeDatos.comprobarUsuario(user,password)){
+        System.out.println("Identifiquese");
+        String user, password;
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Introduzca Usuario");
+        user = teclado.next();
+        System.out.println("Introduzca password");
+        password = teclado.next();
+        baseDeDatos.conexion();
+        if (baseDeDatos.comprobarUsuario(user, password)) {
 
-                    }else{
-                        System.out.println("Para poder jugar, debes registrarte");
-
-                    }
-                    break;
-                case 2:
-                    System.out.println("Registrese");
-                    System.out.println("Introduzca nombre de usuario");
-                    user = teclado.next();
-                    System.out.println("Introduzca contraseña");
-                    password = teclado.next();
-                    System.out.println("Introduzca nombre");
-                    nombre = teclado.next();
-                    System.out.println("Introduzca apellidos");
-                    apellidos = teclado.next();
-                    System.out.println("Introduzca localizacion");
-                    localizacion = teclado.next();
-                    System.out.println("Introduzca edad");
-                    edad = teclado.next();
-                    System.out.println("Introduzca email");
-                    email = teclado.next();
-                    System.out.println("Introduzca si tiene tarjeta bancaria");
-                    System.out.println("Introduzca Nacionalidad");
-                    baseDeDatos.registrarUser();
-                    break;
-                case 3:
-                    break;
-            }
-        }while (num!=3);
-
-
+        } else {
+            System.out.println("Los datos introducidos son incorrectos, vuelve a intentarlo");
+        }
     }
     //TODO
     /*Cada jugador posee un número de monedas que va ganando a lo largo del juego y que
