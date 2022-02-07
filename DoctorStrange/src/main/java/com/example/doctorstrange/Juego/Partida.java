@@ -20,6 +20,7 @@ public class Partida {
 
         }
 
+
     }
     //TODO
     /*Cada jugador posee un número de monedas que va ganando a lo largo del juego y que
