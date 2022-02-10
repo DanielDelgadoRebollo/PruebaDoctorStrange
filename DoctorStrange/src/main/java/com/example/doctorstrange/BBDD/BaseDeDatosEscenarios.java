@@ -2,7 +2,6 @@ package com.example.doctorstrange.BBDD;
 
 public interface BaseDeDatosEscenarios {
     String DB_MONGO_DBURI = "mongodb+srv://testUser:12345@doctorstrange.wc8mn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-    String DB_NAME = "DoctorStrange";
     String DB_COL_SCENE = "Escenarios";
     String DB_ATRIB_SANCTUM = "Sanctun Sactorum";
     String DB_ATRIB_STARK = "Stark Tower";

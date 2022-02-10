@@ -28,7 +28,8 @@ public class Partida {
                             password = teclado.next();
                             baseDeDatos.conexion();
                             if (baseDeDatos.comprobarUsuario(user, password)) {
-
+                                System.out.println("Eliga Superheroes: ");
+                                baseDeDatos.elegirSuperheroe();
                             } else {
                                 System.out.println("Los datos introducidos son incorrectos, vuelve a intentarlo");
                             }

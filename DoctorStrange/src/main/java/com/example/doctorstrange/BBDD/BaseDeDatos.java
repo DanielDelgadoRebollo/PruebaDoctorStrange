@@ -15,7 +15,12 @@ import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
+import com.example.doctorstrange.BBDD.BaseDeDatosSuperheroes;
 import com.squareup.okhttp.*;
+import org.bson.json.JsonObject;
+
+import java.util.Map;
+
 
 public class BaseDeDatos implements BaseDeDatosUsuario {
 
@@ -41,6 +46,14 @@ public class BaseDeDatos implements BaseDeDatosUsuario {
 
         }
         return false;
+    }
+    public void elegirSuperheroe(){
+        MongoDatabase db = conexion();
+        String coleccion = BaseDeDatosSuperheroes.DB_COL_Superheroes;
+        FindIterable<Document> findDocument = db.getCollection(coleccion).find();
+        for(Document item : findDocument){
+            System.out.println(item.toString());
+        }
     }
 
 
