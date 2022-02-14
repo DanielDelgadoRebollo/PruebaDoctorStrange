@@ -17,4 +17,5 @@ public interface BaseDeDatosUsuario {
     String DB_ATRIB_TRABAJO = "Trabajo";
     String DB_ATRIB_NACIONALIDAD = "Nacionalidad";
     String DB_ATRIB_MONEDAS = "Monedas";
+
 }

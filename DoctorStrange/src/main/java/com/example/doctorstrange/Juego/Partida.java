@@ -43,6 +43,8 @@ public class Partida {
                                 opciones = teclado.nextInt();
                                 switch (opciones) {
                                     case 1:
+                                        baseDeDatos.elegirEscenario();
+                                        baseDeDatos.elegirSuperheroes();
                                         break;
                                     case 2:
                                         break;

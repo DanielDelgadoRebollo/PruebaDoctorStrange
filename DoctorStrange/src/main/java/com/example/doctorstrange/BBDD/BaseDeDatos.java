@@ -1,8 +1,8 @@
 package com.example.doctorstrange.BBDD;
 
 import com.example.doctorstrange.Juego.Jugador;
-import com.mongodb.Block;
-import com.mongodb.ConnectionString;
+import com.example.doctorstrange.Juego.Superheroes;
+import com.mongodb.*;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 
@@ -10,15 +10,14 @@ import org.bson.BsonDocument;
 import org.bson.BsonInt64;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import com.squareup.okhttp.*;
 
-public class BaseDeDatos implements BaseDeDatosUsuario {
+import java.nio.charset.StandardCharsets;
 
+public class BaseDeDatos implements BaseDeDatosUsuario, BaseDeDatosEscenarios, BaseDeDatosSuperheroes, BaseDeDatosRanking{
 
     public MongoDatabase conexion() {
         MongoClient client = MongoClients.create(DB_MONGO_DBURI);
@@ -53,6 +52,26 @@ public class BaseDeDatos implements BaseDeDatosUsuario {
 
         }
         return false;
+    }
+    public void elegirEscenario(){
+        MongoDatabase db = conexion();
+        FindIterable<Document> findDocument = db.getCollection(DB_COL_SCENE).find();
+        System.out.println("Elige un escenario");
+        System.out.println("-----------------------------");
+        for (Document item : findDocument) {
+            System.out.println(item.getString("Escenario"));
+        }
+    }
+
+   public void elegirSuperheroes(){
+        MongoDatabase db = conexion();
+        FindIterable<Document> findDocument = db.getCollection(DB_COL_SUPERHEROES).find();
+        String nombre = null;
+       System.out.println("Elige tres superheroes para luchar");
+       System.out.println("-----------------------------");
+       for (Document item : findDocument) {
+            System.out.println(item.getString("Nombre"));
+            }
     }
 
     public Jugador cargarJugador() {
